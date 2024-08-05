@@ -1,0 +1,9 @@
+venv
+data/captcha/raw
+data/captcha/test
+data/captcha/val
+data/captcha/train
+data/iam/raw
+data/iam/test
+data/iam/val
+data/iam/train
