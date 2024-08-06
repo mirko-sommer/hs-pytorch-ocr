@@ -9,7 +9,7 @@ from torch.utils.data import Dataset
 from torchvision import transforms
 from pathlib import Path
 from typing import Tuple
-from PIL import Image, ImageOps
+from PIL import Image
 
 
 def is_empty(directory: Path) -> bool:
@@ -138,7 +138,18 @@ class CaptchaLoader(Dataset):
 
 
 class IAMLoader(Dataset):
+    """
+    A custom dataset class for loading and processing the IAM Handwriting Database.
+    """
+
     def __init__(self, img_dir: str, information_file: str):
+        """
+        Initializes the IAMLoader with the specified image directory and information file.
+
+        Args:
+            img_dir (str): The directory containing the image files.
+            information_file (str): The file containing transcriptions and other information.
+        """
         self.img_dir = os.path.abspath(img_dir)
         self.paths = [os.path.join(self.img_dir, filename) for filename in os.listdir(self.img_dir) if filename.endswith(('.png', '.jpg', '.jpeg'))]
         self.information_file = os.path.abspath(information_file)
@@ -149,6 +160,12 @@ class IAMLoader(Dataset):
         self.transcriptions = self.parse_information_file()
 
     def parse_information_file(self) -> dict:
+        """
+        Parses the information file to extract transcriptions.
+
+        Returns:
+            dict: A dictionary mapping image filenames to their transcriptions.
+        """
         transcriptions = {}
         with open(self.information_file, 'r') as file:
             lines = file.readlines()
@@ -163,6 +180,15 @@ class IAMLoader(Dataset):
         return transcriptions
 
     def resize_and_pad(self, image: Image.Image) -> Image.Image:
+        """
+        Resizes and pads the image to fit within the target dimensions while maintaining the aspect ratio.
+
+        Args:
+            image (Image.Image): The input image to be resized and padded.
+
+        Returns:
+            Image.Image: The resized and padded image.
+        """
         target_width, target_height = 200, 50
         original_width, original_height = image.size
         
@@ -183,12 +209,36 @@ class IAMLoader(Dataset):
         return new_image
 
     def __len__(self) -> int:
+        """
+        Returns the number of images in the dataset.
+
+        Returns:
+            int: The number of images.
+        """
         return len(self.paths)
 
     def get_filename(self, path: str) -> str:
+        """
+        Extracts the filename without the extension from a given path.
+
+        Args:
+            path (str): The full path to the file.
+
+        Returns:
+            str: The filename without the extension.
+        """
         return os.path.splitext(os.path.basename(path))[0]
 
     def __getitem__(self, idx: int) -> Tuple[torch.Tensor, str]:
+        """
+        Retrieves the image and its corresponding transcription at the specified index.
+
+        Args:
+            idx (int): The index of the image to retrieve.
+
+        Returns:
+            Tuple[torch.Tensor, str]: The transformed image and its transcription.
+        """
         path = self.paths[idx]
         filename = self.get_filename(path)
         transcription = self.transcriptions.get(filename, "")
@@ -200,11 +250,11 @@ class IAMLoader(Dataset):
 
         img = self.transform(img)
         return img, transcription
-    
+
     def extract_unique_chars(self) -> set:
         """
         Extracts all unique characters from the transcriptions.
-        
+
         Returns:
             set: A set of unique characters found in the transcriptions.
         """

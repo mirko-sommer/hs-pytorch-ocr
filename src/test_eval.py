@@ -137,7 +137,7 @@ class CTCModelTesterEvaluator:
                     p_idx = char_to_idx[p_char]
                     confusion_matrix[g_idx][p_idx] += 1
 
-        fig, ax = plt.subplots(figsize=(8, 8))
+        fig, ax = plt.subplots(figsize=(15, 15))
         cax = ax.matshow(confusion_matrix, cmap='plasma')
         plt.title('Confusion Matrix')
         plt.xlabel('Predicted')

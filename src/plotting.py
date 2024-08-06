@@ -1,9 +1,42 @@
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 import numpy as np
 from IPython.display import clear_output
 
 from utils import decode_logits
 
+
+
+def show_sample_data(loader, num_samples=5):
+    """
+    Visualizes sample data from a given DataLoader.
+
+    Args:
+        loader (DataLoader): DataLoader containing the dataset.
+        num_samples (int, optional): Number of samples to display. Defaults to 5.
+    """
+    
+    data_iter = iter(loader)
+    images, labels = next(data_iter)
+
+    plt.figure(figsize=(15, 5))
+    for i in range(min(num_samples, len(images))):
+        img = images[i].permute(1, 2, 0).numpy()
+        label = labels[i]
+
+        ax = plt.subplot(1, num_samples, i + 1)
+        ax.imshow(img)
+        ax.set_title(label)
+        ax.axis('off')
+
+        # Draw a border around the image
+        border_color = 'blue'
+        border_thickness = 3
+        height, width, _ = img.shape
+        rect = patches.Rectangle((0, 0), width, height, linewidth=border_thickness, edgecolor=border_color, facecolor='none')
+        ax.add_patch(rect)
+
+    plt.show()
 
 
 def plot_loss(epoch: int, train_losses: list, val_losses: list, n_steps: int = 100):
