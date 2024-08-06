@@ -11,12 +11,50 @@ The trained model is tested on the captcha and IAM Handwriting Word dataset.
 
 The raw experiment results can be found in [./results/](./results/).
 
-Details of the implementation and the experiment results can be found in the project report.
+Details of the implementation and the experiment results can be found in the [project report](./report.pdf).
 
 
 ## 📁 Project structure
 
-TODO     
+```
+.
+├── data 
+│     ├── captcha               
+│     │         ├── raw         # put raw data set here
+│     │         ├── test        # split test data
+│     │         ├── train       # split train data
+│     │         └── val         # split val data
+│     ├── iam
+│     │         ├── raw         # put raw data set here
+│     │         ├── test        # split test data
+│     │         ├── train       # split train data
+│     └──       └── val         # split val data          
+├── models     
+│     ├── captcha               # trained captcha models
+│     └── iam                   # trained iam models           
+├── results  
+│     ├── captcha               
+│     │         ├── not_pretrained_resnet18     # results of resnet18 model, that has not been pre-trained
+│     │         ├── pretrained_resnet18         # results of pretrained resnet18 model
+│     │         └── simple_cnn                  # results of my simple cnn implementation
+│     ├── iam
+│     │         ├── not_pretrained_resnet18     # results of resnet18 model, that has not been pre-trained
+│     │         ├── pretrained_resnet18         # results of pretrained resnet18 model
+│     └──       └── simple_cnn                  # results of my simple cnn implementation                                      
+├── src
+│    ├── crnn.py                # model architecture
+│    ├── dataset.py             # dataset processing, CaptchaDataloader and IAMDataloader
+│    ├── plotting.py            # functions to plot results
+│    ├── test_eval.py           # CTCModelTesterEvaluator Class to test and evaluate model
+│    ├── train.py               # CTCModelTrainer Class to train the model
+│    ├── utils.py               # utilites to encode and decode model outputs and text
+│    ├── run_captcha.ipynb      # run captcha experiments
+│    └── run_iam.ipynb          # run iam experiments
+├── .gitignore
+├── report.pdf   # final report of this project
+├── README.md    # this README               
+└── requirements.txt
+```  
 
 
 ## 📚 How to run the code
