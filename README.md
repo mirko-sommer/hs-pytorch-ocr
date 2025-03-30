@@ -1,10 +1,8 @@
 # PyTorch OCR
 
-[[_TOC_]]
-
 ## 🚀 Description
 
-Project for the Hauptseminar "Introduction to Neural Networks and Sequence-To-Sequence Learning" SoSe 2024.
+Project for the seminar "Introduction to Neural Networks and Sequence-To-Sequence Learning" SoSe 2024 at University Heidelberg.
 
 The goal of this project is to implement a simple Optical Character Recognition Model in PyTorch. 
 The trained model is tested on the captcha and IAM Handwriting Word dataset.
@@ -81,4 +79,35 @@ The rest of the code in the Jupyter Notebooks should be self explaining. For fur
 
 ## 👩‍🚀 Author
 
-* [Mirko Sommer](mailto:mirko.sommer@stud.uni-heidelberg.de)
+* Mirko Sommer
+
+## References
+[1] Alex Graves, Santiago Fernandez, Faustino Gomez, and Jurgen Schmidhuber. 
+Connectionist temporal classification: Labelling unsegmented sequence data with recurrent neural ’networks. 
+ICML 2006 - Proceedings of the 23rd International Conference on Machine
+Learning, 2006:369–376, 01 2006.
+
+[2] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Deep residual learning for image recognition, 2015.
+
+[3] U-V Marti and Horst Bunke. The iamdatabase: an english sentence database for offline handwriting recognition.
+International Journal on Document Analysis and Recognition, 5(1):39–46,2002. 
+Available at https://fki.tic.heia-fr.ch/databases/iam-handwriting-database.
+
+[4] Kishore Papineni, Salim Roukos, Todd Ward, and Wei-Jing Zhu. 
+Bleu: a method for automatic evaluation of machine translation. 
+In Pierre Isabelle, Eugene Charniak, and Dekang Lin, editors, Proceedings of the 40th Annual Meeting of the Association for Computational Linguistics, pages 311–318, Philadelphia, Pennsylvania, USA, July 2002. Association for Computational Linguistics.
+
+[5] Baoguang Shi, Xiang Bai, and Cong Yao.
+An end-to-end trainable neural network for image-based sequence recognition and its application to scene text recognition, 2015.
+
+[6] Rodrigo Wilhelmy and Horacio Rosa.
+captcha dataset, July 2013. 
+Available at https://www.kaggle.com/datasets/fournierp/captcha-version-2-images/data.
+
+## Code References
+These references inspired my code structure, model architecture, and output formatting in some way.
+1. https://medium.com/analytics-vidhya/resnetunderstand-and-implement-from-scratchd0eb9725e0db
+2. https://github.com/GabrielDornelles/pytorchocr/tree/main
+3. https://github.com/carnotaur/crnntutorial/tree/master
+4. https://www.kaggle.com/code/kowalskyyy999/captcharecognition-crnn-ctcloss-using-pytorch
+5. https://deepayan137.github.io/blog/markdown/2020/08/29/buocr.html
